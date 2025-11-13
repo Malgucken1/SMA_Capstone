@@ -79,7 +79,7 @@ def find_similar_chunks(embedding: list):
         # Dies ruft die Funktion auf UND FÜHRT SIE AUS!
         response = supabase.rpc('match_nasdaq_chunks', {
             'query_embedding': embedding,
-            'match_threshold': 0.7, # Mindest-Ähnlichkeit (0.0 bis 1.0)
+            'match_threshold': 0.4, # Mindest-Ähnlichkeit (0.0 bis 1.0)
             'match_count': 5        # Anzahl der Chunks, die zurückgegeben werden sollen
         }).execute() # <--- ***** DAS WAR DIE KORREKTUR *****
         
@@ -189,3 +189,4 @@ if query := st.chat_input("Stelle eine Frage (z.B. 'Was ist die Geschäftsstrate
         # 3. Antwort anzeigen und speichern
         st.markdown(answer)
         st.session_state.messages.append({"role": "assistant", "content": answer})
+
