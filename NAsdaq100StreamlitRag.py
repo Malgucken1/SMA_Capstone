@@ -76,12 +76,13 @@ def find_similar_chunks(embedding: list):
     um die ähnlichsten Text-Chunks zu finden.
     """
     try:
-        # Dies ruft die Funktion auf, die du in Supabase erstellt hast!
+        # Dies ruft die Funktion auf UND FÜHRT SIE AUS!
         response = supabase.rpc('match_nasdaq_chunks', {
             'query_embedding': embedding,
             'match_threshold': 0.7, # Mindest-Ähnlichkeit (0.0 bis 1.0)
             'match_count': 5        # Anzahl der Chunks, die zurückgegeben werden sollen
-        })
+        }).execute() # <--- ***** DAS WAR DIE KORREKTUR *****
+        
         return response.data
     except Exception as e:
         st.error(f"Fehler bei der Vektorsuche in Supabase: {e}")
